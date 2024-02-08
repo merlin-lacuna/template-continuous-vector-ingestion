@@ -4,6 +4,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 import re
 import logging
 import uuid
+import json
 
 import time
 from bs4 import BeautifulSoup, SoupStrainer
@@ -96,7 +97,7 @@ brokers=cfgs.pop("bootstrap.servers")
 idcounter = 0
 with Producer(broker_address=brokers, extra_config=cfgs) as producer:
     for doc in quixdocs:
-        doctext = re.sub(r'\n+', '\n', q.page_content)
+        doctext = re.sub(r'\n+', '\n', doc.page_content)
         doctext = re.sub(r' +', ' ', doctext)
 
         doc_id = idcounter
