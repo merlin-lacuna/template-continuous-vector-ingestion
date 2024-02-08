@@ -1,4 +1,4 @@
-name: Reindex Quix Docs
+name: CSV Data
 language: python
 variables:
   - name: output
