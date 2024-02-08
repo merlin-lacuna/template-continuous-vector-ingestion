@@ -97,7 +97,7 @@ deployments:
   - name: Streamlit dashboard
     application: Streamlit dashboard
     deploymentType: Service
-    version: finalsearch
+    version: ef8c2e4ce3d6691ded77203e277870db20d45239
     resources:
       cpu: 200
       memory: 1000
