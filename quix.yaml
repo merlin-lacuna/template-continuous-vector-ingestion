@@ -29,7 +29,7 @@ deployments:
   - name: PT1 | Produce data from CSV
     application: CSV data
     deploymentType: Job
-    version: d019d8ce457269c4ff0cf20872dcb176d9e0729e
+    version: ef8c2e4ce3d6691ded77203e277870db20d45239
     resources:
       cpu: 200
       memory: 500
@@ -78,7 +78,7 @@ deployments:
   - name: PT 2 | produce data from CSV
     application: CSV data
     deploymentType: Job
-    version: d019d8ce457269c4ff0cf20872dcb176d9e0729e
+    version: ef8c2e4ce3d6691ded77203e277870db20d45239
     resources:
       cpu: 200
       memory: 500
