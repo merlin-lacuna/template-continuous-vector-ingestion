@@ -108,8 +108,8 @@ deployments:
     deploymentType: Job
     version: 19363652df136651e4abc5629ba2cd6dc385096f
     resources:
-      cpu: 200
-      memory: 500
+      cpu: 500
+      memory: 1000
       replicas: 1
     variables:
       - name: output
