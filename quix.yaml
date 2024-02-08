@@ -9,7 +9,7 @@ deployments:
   - name: Create embeddings
     application: Create Embeddings
     deploymentType: Service
-    version: abb20742de9e78fa97766f59f882b71f6d71f3f1
+    version: ef8c2e4ce3d6691ded77203e277870db20d45239
     resources:
       cpu: 200
       memory: 1000
