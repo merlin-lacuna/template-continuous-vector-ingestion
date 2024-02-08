@@ -64,8 +64,8 @@ def simple_extractor(html: str) -> str:
     return re.sub(r"\n\n+", "\n\n", soup.text).strip()
 
 def ingest_docs():
-    #docs_from_documentation = load_quix_docs()
-    docs_from_documentation = load_quix_docs_local()
+    docs_from_documentation = load_quix_docs()
+    #docs_from_documentation = load_quix_docs_local()
     logger.info(f"Loaded {len(docs_from_documentation)} docs from documentation")
     logger.info("Logging first 5 docs..")
     for d in range(5):
