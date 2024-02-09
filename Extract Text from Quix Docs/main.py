@@ -13,7 +13,7 @@ from quixstreams.models.serializers import (
 )
 from quixstreams.platforms.quix import QuixKafkaConfigsBuilder, TopicCreationConfigs
 
-load_dotenv("./bank_example/quix_platform_version/quix_vars.env")
+# load_dotenv("./bank_example/quix_platform_version/quix_vars.env")
 
 
 # For non-"Application.Quix" platform producing, config is a bit manual right now
