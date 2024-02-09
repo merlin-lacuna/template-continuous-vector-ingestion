@@ -1,4 +1,5 @@
 quixstreams==2.2.0a0
 langchain
 langchain_community
+lxml
 bs4
