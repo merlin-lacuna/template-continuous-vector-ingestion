@@ -106,7 +106,7 @@ deployments:
   - name: Extract Text from Quix Docs
     application: Extract Text from Quix Docs
     deploymentType: Job
-    version: 42af77c9e3bff71856db4343d9d3d4dac2b09661
+    version: 3645fb6e38e3c228e671d092509a69be271aa148
     resources:
       cpu: 300
       memory: 500
