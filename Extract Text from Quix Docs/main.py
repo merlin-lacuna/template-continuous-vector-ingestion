@@ -13,7 +13,10 @@ import os
 
 from quixstreams.kafka import Producer
 from quixstreams.platforms.quix import QuixKafkaConfigsBuilder, TopicCreationConfigs
-from quixstreams.models.serializers.quix import JSONSerializer, QuixSerializer, SerializationContext
+from quixstreams.models.serializers import (
+    QuixTimeseriesSerializer,
+    SerializationContext,
+)
 
 
 logging.basicConfig(level=logging.INFO)
@@ -87,15 +90,20 @@ def ingest_docs():
 
 quixdocs = ingest_docs()
 
+#### START QUIX STUFF ######
 outputtopicname = os.environ["output"]
 print(f"Producing to output topic: {outputtopicname}...\n\n")
 
+# For non-"Application.Quix" platform producing, config is a bit manual right now
+topic = outputtopicname
 cfg_builder = QuixKafkaConfigsBuilder()
-cfgs, topics, _ = cfg_builder.get_confluent_client_configs([outputtopicname])
+cfgs, topics, _ = cfg_builder.get_confluent_client_configs([topic])
+topic = topics[0]
+cfg_builder.create_topics([TopicCreationConfigs(name=topic)])
+serialize = QuixTimeseriesSerializer()
 
-brokers=cfgs.pop("bootstrap.servers")
 idcounter = 0
-with Producer(broker_address=brokers, extra_config=cfgs) as producer:
+with Producer(broker_address=cfgs.pop("bootstrap.servers"), extra_config=cfgs) as producer:
     for doc in quixdocs:
         doctext = re.sub(r'\n+', '\n', doc.page_content)
         doctext = re.sub(r' +', ' ', doctext)
@@ -117,7 +125,9 @@ with Producer(broker_address=brokers, extra_config=cfgs) as producer:
             topic=outputtopicname,
             headers=[("uuid", doc_uuid)],  # a dict is also allowed here
             key=doc_key,
-            value=json.dumps(value),  # needs to be a string
+            value=serialize(
+                value=value, ctx=SerializationContext(topic=topic, headers=headers)
+            ),,  # needs to be a string
         )
 
 print("ingested quix docs")
