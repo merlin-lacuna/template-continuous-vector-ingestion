@@ -4,3 +4,4 @@ langchain_community
 lxml
 bs4
 tqdm
+python-dotenv
