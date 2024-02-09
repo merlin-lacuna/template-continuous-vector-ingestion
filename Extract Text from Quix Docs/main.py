@@ -87,11 +87,11 @@ def ingest_docs():
 
 quixdocs = ingest_docs()
 
-outputtopicname = docs_topic_name
+outputtopicname = os.environ["output"]
 print(f"Producing to output topic: {outputtopicname}...\n\n")
 
 cfg_builder = QuixKafkaConfigsBuilder()
-cfgs, topics, _ = cfg_builder.get_confluent_client_configs([os.environ["output"]])
+cfgs, topics, _ = cfg_builder.get_confluent_client_configs([outputtopicname])
 
 brokers=cfgs.pop("bootstrap.servers")
 idcounter = 0
