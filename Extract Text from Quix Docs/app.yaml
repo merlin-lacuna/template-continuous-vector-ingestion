@@ -4,7 +4,7 @@ variables:
   - name: output
     inputType: OutputTopic
     description: This is the output topic for hello world data
-    defaultValue: quix-raw-docs
+    defaultValue: raw-documents-html
     required: true
 dockerfile: dockerfile
 runEntryPoint: main.py
