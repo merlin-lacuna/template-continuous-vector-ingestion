@@ -1,5 +1,6 @@
 import time
 import uuid
+import os
 from random import randint, random, choice
 from time import sleep
 
@@ -16,7 +17,7 @@ load_dotenv("./bank_example/quix_platform_version/quix_vars.env")
 
 
 # For non-"Application.Quix" platform producing, config is a bit manual right now
-topic = "qts__purchase_events"
+topic = os.environ['output']
 cfg_builder = QuixKafkaConfigsBuilder()
 cfgs, topics, _ = cfg_builder.get_confluent_client_configs([topic])
 topic = topics[0]
