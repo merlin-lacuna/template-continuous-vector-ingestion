@@ -111,6 +111,8 @@ with Producer(broker_address=cfgs.pop("bootstrap.servers"), extra_config=cfgs) a
         doc_id = idcounter
         doc_key = f"A{'0'*(10-len(str(doc_id)))}{doc_id}"
         doc_uuid = str(uuid.uuid4())
+        headers = {**serialize.extra_headers, "uuid": doc_uuid}
+
         value = {
             "Timestamp": time.time_ns(),
             "doc_id": doc_id,
@@ -123,7 +125,7 @@ with Producer(broker_address=cfgs.pop("bootstrap.servers"), extra_config=cfgs) a
         idcounter = idcounter + 1
         producer.produce(
             topic=outputtopicname,
-            headers=[("uuid", doc_uuid)],  # a dict is also allowed here
+            headers=headers,  # a dict is also allowed here
             key=doc_key,
             value=serialize(
                 value=value, ctx=SerializationContext(topic=topic, headers=headers)
