@@ -129,7 +129,7 @@ with Producer(broker_address=cfgs.pop("bootstrap.servers"), extra_config=cfgs) a
             key=doc_key,
             value=serialize(
                 value=value, ctx=SerializationContext(topic=topic, headers=headers)
-            ),,  # needs to be a string
+            ),  # needs to be a string
         )
 
 print("ingested quix docs")
